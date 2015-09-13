@@ -1,0 +1,26 @@
+<html>
+  <head>
+
+    <title>Booking App</title>
+  </head>
+  <body>
+  <div>Book My Auto:
+        <a href="{{ url_for('home') }}">Home</a>
+        |  <a href = {{url_for('get_bookings')}}>Bookings</a>
+        |  <a href = {{url_for('get_drivers')}}>Drivers</a>
+
+  </div>
+
+    <hr>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>{{ message }} </li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </body>
+</html>

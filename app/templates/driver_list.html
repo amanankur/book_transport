@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Hi!</h1>
+
+    <h2>Add a new Driver</h2>
+      <form action="" method="post" name="get_drivers">
+      {{form.hidden_tag()}}
+      <table>
+          <tr>
+              <td>First Name:</td>
+              <td>{{ form.first_name(size=12) }}</td>
+
+              <td>Last Name:</td>
+              <td>{{ form.last_name(size=12) }}</td>
+
+              <td>Contact No:</td>
+              <td>{{ form.contact(size=12) }}</td>
+
+              <td>Vehicle No:</td>
+              <td>{{ form.vehicleNum(size=12) }}</td>
+
+          <td></td>
+              <td><input name = 'submit' type="submit" value="Add Driver"></td>
+          </tr>
+          <br>
+      </table>
+  </form>
+
+    <h2>The driver details are</h2><br>
+
+
+    <table border="1" width="100%">
+        <tr>
+            <th width="5%">Driver ID</th>
+            <th width="25%">First Name</th>
+            <th width="25%">Last Name</th>
+            <th width="20%">Phone Number</th>
+            <th width="25%">Vehicle Number</th>
+        </tr>
+        {% if driver_list !=None %}
+
+
+            {% for driver in driver_list %}
+
+                    <tr>
+
+                        <td><a href = "/transport/drivers/{{driver.id}}">{{driver.id}}</td>
+
+                        <td><a href = "/transport/drivers/{{driver.id}}"> {{driver.first_name}}</a></td>
+
+                        <td> {{driver.last_name}}</td>
+
+                        <td>{{driver.contact}}</td>
+
+                        <td>{{driver.vehicleNum}}</td>
+
+                    </tr>
+
+            {% endfor %}
+
+        {% endif %}
+
+    </table>
+
+<div style="position: absolute; bottom: 5px; ">
+    <i>
+        <small>* Click on the driver name or id to view its details.
+    </i>
+</div>
+
+{% endblock %}

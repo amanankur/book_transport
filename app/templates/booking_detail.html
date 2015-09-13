@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Hi!</h1><br>
+
+ <h2>The Booking details are</h2><br>
+
+
+    <table border="1" width="100%">
+        <tr>
+            <th width="5%">Booking ID</th>
+            <th width="25%">Booking Name</th>
+            <th width="10%">Phone Number</th>
+            <th width="20%">Start Location</th>
+            <th width="25%">End Location</th>
+            <th width="15%">Driver</th>
+
+        </tr>
+        {% if booking_details !=None %}
+            <tr>
+
+                <td>{{booking_details.id}}</td>
+
+                <td>{{booking_details.name}}</td>
+
+                <td> {{booking_details.phoneNum}}</td>
+
+                <td>{{booking_details.startLoc}}</td>
+
+                <td>{{booking_details.endLoc}}</td>
+
+                {% if booking_details.driver.first_name %}
+
+                            <td>{{booking_details.driver.first_name}}</td>
+
+                        {% else %}
+
+                            <td>Not Assigned</td>
+
+                        {% endif %}
+
+            </tr>
+
+        {% endif %}
+
+    </table>
+<br>
+<br>
+
+<table>
+    <tr>
+        <td>
+            <a href = "/transport/bookings/edit/{{booking_details.id}}"> Edit Booking Details : </a>
+        </td>
+
+        <td>
+            <form action="/transport/bookings/edit/{{booking_details.id}}" method="GET">
+                <input type="submit" value="Edit Booking" />
+
+            </form>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <a href = "/transport/bookings/delete/{{booking_details.id}}"> Delete this booking: </a>
+        </td>
+        <td>
+        <form action="/transport/bookings/delete/{{booking_details.id}}" method="POST">
+            <input type="submit" value="Delete entry" />
+        </form>
+        </td>
+    </tr>
+</table>
+
+{% endblock %}

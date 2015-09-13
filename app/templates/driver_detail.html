@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Hi!</h1><br>
+
+ <h2>The driver details are</h2><br>
+
+
+    <table border="1" width="100%">
+        <tr>
+            <th width="5%">Driver ID</th>
+            <th width="25%">First Name</th>
+            <th width="25%">Last Name</th>
+            <th width="20%">Phone Number</th>
+            <th width="25%">Vehicle Number</th>
+        </tr>
+        {% if driver_details !=None %}
+            <tr>
+
+                <td>{{driver_details.id}}</td>
+
+                <td>{{driver_details.first_name}}</td>
+
+                <td> {{driver_details.last_name}}</td>
+
+                <td>{{driver_details.contact}}</td>
+
+                <td>{{driver_details.vehicleNum}}</td>
+
+            </tr>
+
+        {% endif %}
+
+    </table>
+<br>
+<br>
+<table>
+    <tr>
+        <td>
+            <a href = "/transport/drivers/edit/{{driver_details.id}}"> Edit Driver Details : </a>
+        </td>
+
+        <td>
+            <form action="/transport/drivers/edit/{{driver_details.id}}" method="GET">
+                <input type="submit" value="Edit Driver" />
+
+            </form>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <a href = "/transport/drivers/delete/{{driver_details.id}}"> Delete this Driver: </a>
+        </td>
+        <td>
+        <form action="/transport/drivers/delete/{{driver_details.id}}" method="POST">
+            <input type="submit" value="Delete entry" />
+        </form>
+        </td>
+    </tr>
+</table>
+
+{% endblock %}

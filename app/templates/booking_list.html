@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Hi!</h1>
+
+    <h2>Add a new Booking</h2>
+      <form action="" method="post" name="get_bookings">
+      {{form.hidden_tag()}}
+      <table>
+          <tr>
+              <td>Name:</td>
+              <td>{{ form.name(size=12) }}</td>
+
+              <td>Phone:</td>
+              <td>{{ form.phoneNum(size=12) }}</td>
+
+              <td>Start Location:</td>
+              <td>{{ form.startLoc(size=12) }}</td>
+
+              <td>End Location:</td>
+              <td>{{ form.endLoc(size=12) }}</td>
+
+          <td></td>
+              <td><input name = 'submit' type="submit" value="Add Booking"></td>
+          </tr>
+          <br>
+      </table>
+  </form>
+
+    <h2>The Booking details are</h2><br>
+
+
+    <table border="1" width="100%">
+        <tr>
+            <th width="5%">Booking ID</th>
+            <th width="25%">Booking Name</th>
+            <th width="15%">Phone Number</th>
+            <th width="20%">Start Location</th>
+            <th width="20%">End Location</th>
+            <th width ="15%">Driver</th>
+        </tr>
+        {% if booking_list !=None %}
+
+
+            {% for booking in booking_list %}
+
+                    <tr>
+
+                        <td>{{booking.id}}</td>
+                        <td>
+                            <a href = "/transport/bookings/{{booking.id}}"> {{booking.name}}</a>
+                        </td>
+
+                        <td> {{booking.phoneNum}}</td>
+
+                        <td>{{booking.startLoc}}</td>
+
+                        <td>{{booking.endLoc}}</td>
+
+                        {% if booking.driver.first_name %}
+
+                            <td>{{booking.driver.first_name}} {{booking.driver.last_name}}</td>
+
+                        {% else %}
+
+                            <td>Not Assigned</td>
+
+                        {% endif %}
+
+
+                    </tr>
+
+            {% endfor %}
+
+        {% endif %}
+
+    </table>
+
+
+    <div style="position: absolute; bottom: 5px; ">
+    <i><small>* Click at the Booking to view its details</i></div>
+
+
+{% endblock %}
